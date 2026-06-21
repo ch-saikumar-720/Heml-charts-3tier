@@ -1,4 +1,4 @@
-{{- range $name,$app := .Values.applications }}
+{{- range $name,$app,$type := .Values.applications }}
 
 apiVersion: v1
 
@@ -30,7 +30,7 @@ spec:
 
   type:
 
-    {{ $name }}
+    {{ $type }}
 
 ---
 
