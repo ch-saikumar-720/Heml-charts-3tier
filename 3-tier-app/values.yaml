@@ -1,7 +1,7 @@
 applications:
   frontend:
     enabled: true
-    replicaCount: 1
+    replicaCount: 2
     image:
       repository: 814636798023.dkr.ecr.us-east-1.amazonaws.com/frontend
       tag: latest
@@ -12,7 +12,7 @@ applications:
 
   backend:
     enabled: true
-    replicaCount: 1
+    replicaCount: 2
     image:
       repository: 814636798023.dkr.ecr.us-east-1.amazonaws.com/backend
       tag: latest
