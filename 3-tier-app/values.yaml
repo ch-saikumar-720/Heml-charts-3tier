@@ -8,7 +8,7 @@ applications:
     containerPort: 80
     service:
       port: 80
-      type: ClusterIP
+      type: NodePort
 
   backend:
     enabled: true
