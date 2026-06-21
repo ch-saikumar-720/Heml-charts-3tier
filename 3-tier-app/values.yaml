@@ -29,9 +29,11 @@ database:
 
 ingress:
   enabled: true
+
   className: alb
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+
+  scheme: internet-facing
+
+  targetType: ip
 
 
