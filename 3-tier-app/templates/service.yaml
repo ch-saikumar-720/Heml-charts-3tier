@@ -1,15 +1,37 @@
+{{- range $name,$app := .Values.applications }}
+
 apiVersion: v1
+
 kind: Service
+
 metadata:
-  name: {{ include "3-tier-app.fullname" . }}
-  labels:
-    {{- include "3-tier-app.labels" . | nindent 4 }}
+
+  name:
+
+    {{ $name }}-service
+
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+
   selector:
-    {{- include "3-tier-app.selectorLabels" . | nindent 4 }}
+
+    app:
+
+      {{ $name }}
+
+  ports:
+
+  - port:
+
+      {{ $app.service.port }}
+
+    targetPort:
+
+      {{ $app.containerPort }}
+
+  type:
+
+    ClusterIP
+
+---
+
+{{ end }}

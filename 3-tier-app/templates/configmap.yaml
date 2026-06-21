@@ -1,0 +1,31 @@
+{{- range $name,$app := .Values.applications }}
+
+apiVersion: v1
+
+kind: ConfigMap
+
+metadata:
+
+  name: {{ $name }}-config
+
+data:
+
+{{ if eq $name "frontend" }}
+
+  REACT_APP_API_URL: "/api"
+
+{{ end }}
+
+{{ if eq $name "backend" }}
+
+  DB_HOST: {{ $.Values.database.host | quote }}
+
+  DB_NAME: {{ $.Values.database.name | quote }}
+
+  NODE_ENV: "production"
+
+{{ end }}
+
+---
+
+{{ end }}
