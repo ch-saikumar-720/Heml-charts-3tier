@@ -1,58 +1,37 @@
 applications:
-
   frontend:
-
     enabled: true
-
-    replicaCount: 2
-
+    replicaCount: 1
     image:
-
-      repository: frontend
-
+      repository: 814636798023.dkr.ecr.us-east-1.amazonaws.com/frontend
       tag: latest
-
     containerPort: 80
-
     service:
-
       port: 80
-
+      type: ClusterIP
 
   backend:
-
     enabled: true
-
-    replicaCount: 2
-
+    replicaCount: 1
     image:
-
-      repository: backend
-
+      repository: 814636798023.dkr.ecr.us-east-1.amazonaws.com/backend
       tag: latest
-
     containerPort: 5000
-
     service:
-
       port: 5000
-
+      type: ClusterIP
 
 database:
-
-  host: ""
-
+  host: "ecommerce.ccx0y0aq40h4.us-east-1.rds.amazonaws.com"
   name: ecommerce
-
-  user: ""
-
-  password: ""
-
+  user: "admin"
+  password: "mysecurepassword"
 
 ingress:
-
   enabled: true
-
   className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
 
-  scheme: internet-facing
+
