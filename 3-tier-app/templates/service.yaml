@@ -1,37 +1,21 @@
-{{- range $name,$app,$type := .Values.applications }}
+{{- range $name, $app := .Values.applications }}
 
 apiVersion: v1
-
 kind: Service
 
 metadata:
-
-  name:
-
-    {{ $name }}-service
+  name: {{ $name }}-service
 
 spec:
-
   selector:
-
-    app:
-
-      {{ $name }}
+    app: {{ $name }}
 
   ports:
+  - port: {{ $app.service.port }}
+    targetPort: {{ $app.containerPort }}
 
-  - port:
-
-      {{ $app.service.port }}
-
-    targetPort:
-
-      {{ $app.containerPort }}
-
-  type:
-
-    {{ $type }}
+  type: {{ $app.service.type | default "ClusterIP" }}
 
 ---
 
-{{ end }}
+{{- end }}
